@@ -114,3 +114,24 @@ iframe{
 .attribution a {
     color: hsl(228, 45%, 44%); 
 }
+
+@media only screen and (max-width:690px) {
+    .search-bar{
+        width: 260px;
+    }
+    .modal{
+        flex-direction: column;
+        width: 260px;
+        height: 315px;
+        padding: 0px 0px 25px 10px;
+    }
+    .modal hr{
+      display: none;
+    }
+    .modal-heading{
+        justify-content: center;
+    }
+    .modal-box{
+        padding: 0;
+    }
+}
