@@ -2,14 +2,13 @@ document.querySelector('body').onload = defaultDataInModal();
 const searchButton = document.getElementById('search-button');
 const searchInput = document.getElementById('search-input');
 const myModal = document.getElementById('my-modal');
+const map = document.getElementById('myMap');
+
 
 searchButton.addEventListener('click',async()=>{
-    console.log('clicked');
     // debugger;
         const ipAddress = searchInput.value;
-        const regexExpToCheckIfValidIP = /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/gi;
-        if(regexExpToCheckIfValidIP.test(ipAddress)){
-        fetch(`https://geo.ipify.org/api/v2/country,city?apiKey=at_RD84R7mq7FUiqOYf7JLrEr3qTq1Gh&ipAddress=${ipAddress}`)    
+        fetch(`https://geo.ipify.org/api/v2/country,city,vpn?apiKey=at_IqaOVPyAnIrIZCpFR8UP3mLPojM8w&ipAddress=${ipAddress}`)    
         .then((response) => {
             if (response.ok) {
                 return response.json();
@@ -21,28 +20,19 @@ searchButton.addEventListener('click',async()=>{
                 IP: data.ip,
                 Location: `${data.location.city} ${data.location.country} ${data.location.geonameId}`,
                 TimeZone: `UTC ${data.location.timezone}`, 
-                ISP: data.isp
+                ISP: data.isp,
             };
+            const fetchLocation ={
+                lat: data.location.lat,
+                lng: data.location.lng
+            }
         createModalContent(FetchedData);
+        changeMap(fetchLocation);
         })
         .catch((error) => {
           console.error(error)
         });}
-        else{
-            fetch(`https://geo.ipify.org/api/v2/country,city?apiKey=at_RD84R7mq7FUiqOYf7JLrEr3qTq1Gh&ipAddress=${ipAddress}`)    
-        .then((response) => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error(response.statusText);
-            }})
-        .then((data) => {
-            console.log(data);
-        })
-        .catch((error) => {
-          console.error(error)
-        });}
-    });
+    );
 
 
     function createModalContent(FetchedData){
@@ -63,7 +53,6 @@ searchButton.addEventListener('click',async()=>{
             div.appendChild(heading);
             div.appendChild(content);
             myModal.appendChild(div);
-            console.log(key);
             if(!(key ==='ISP')){
                 const hr = document.createElement('hr');
                 myModal.appendChild(hr);
@@ -85,4 +74,10 @@ function defaultDataInModal(){
             createModalContent(defaultData)
         }
 },1000);
+}
+
+
+function changeMap(fetchLocation){
+    // document.getElementById('myMap').src=`https://www.google.com/maps/@?api=1&map_action=map&center=${fetchLocation.lat}%2C${fetchLocation.lng}`;
+    map.src=`http://www.google.com/maps/place/${fetchLocation.lat},${fetchLocation.lng}`;
 }
