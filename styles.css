@@ -137,4 +137,8 @@ body{
     .modal-box{
         padding: 0;
     }
+
+    .maps{
+        margin-top: -276px;
+    }
 }
