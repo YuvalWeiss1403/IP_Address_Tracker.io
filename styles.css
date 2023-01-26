@@ -9,13 +9,16 @@ body{
     background-repeat: no-repeat;
 }
 
-iframe{
+#my-map{
     z-index: -1;
     position: absolute;
     width: 100%;
-    box-sizing: border-box;
     height: 500px;
-    margin-top: 250px;
+}
+
+.maps{
+    box-sizing: border-box;
+    margin-top: -95px;
 }
 .content{
     display: flex;

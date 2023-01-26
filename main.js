@@ -1,14 +1,13 @@
-document.querySelector('body').onload = defaultDataInModal();
 const searchButton = document.getElementById('search-button');
 const searchInput = document.getElementById('search-input');
 const myModal = document.getElementById('my-modal');
-const map = document.getElementById('myMap');
+const myMap = document.createElement('div');
+document.querySelector('body').onload = defaultDataInModal();
 
 
 searchButton.addEventListener('click',async()=>{
-    // debugger;
         const ipAddress = searchInput.value;
-        fetch(`https://geo.ipify.org/api/v2/country,city,vpn?apiKey=at_IqaOVPyAnIrIZCpFR8UP3mLPojM8w&ipAddress=${ipAddress}`)    
+        fetch(`https://geo.ipify.org/api/v2/country,city,vpn?apiKey=at_LrxRpAQ740L9XpMmJANuzazZmafT2&ipAddress=${ipAddress}`)    
         .then((response) => {
             if (response.ok) {
                 return response.json();
@@ -61,6 +60,9 @@ searchButton.addEventListener('click',async()=>{
     }
 
 function defaultDataInModal(){
+    myMap.innerHTML=`<iframe id="my-map" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d845.2975747326326!2d34.772481570816176!3d32.06410133535028!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1siw!2sil!4v1674721938136!5m2!1siw!2sil" title="my maps"></iframe>`
+    document.body.appendChild(myMap);
+    myMap.className='maps';
     setInterval(()=>{
         const inputValue = searchInput.value;
         if(!inputValue){
@@ -74,10 +76,9 @@ function defaultDataInModal(){
             createModalContent(defaultData)
         }
 },1000);
+
 }
 
 
 function changeMap(fetchLocation){
-    // document.getElementById('myMap').src=`https://www.google.com/maps/@?api=1&map_action=map&center=${fetchLocation.lat}%2C${fetchLocation.lng}`;
-    map.src=`http://www.google.com/maps/place/${fetchLocation.lat},${fetchLocation.lng}`;
-}
+    myMap.innerHTML=`<iframe id="my-map" src="//maps.google.com/maps?q=${fetchLocation.lat},${fetchLocation.lng}&hl=es;z=14&amp;output=embed" title="my maps"></iframe>`}
