@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
+
+
 body{
     padding: 0;
     margin: 0;
@@ -16,10 +19,11 @@ body{
     height: 500px;
 }
 
-.maps{
+.map-container{
     box-sizing: border-box;
     margin-top: -95px;
 }
+
 .content{
     display: flex;
     flex-direction: column;
@@ -44,7 +48,7 @@ body{
     justify-content: space-between;
 }
 
-#search-input{
+.search-bar #search-input{
     border: 0;
     background-color: white;
     border-radius: 9px;
@@ -52,7 +56,7 @@ body{
     padding-left: 10px;
 }
 
-#search-button{
+.search-bar #search-button{
     border: 0;
     background-color: black;
     background-image: url(images/icon-arrow.svg);
@@ -63,7 +67,7 @@ body{
     border-bottom-right-radius: 9px;
 }
 
-#search-button:hover{
+.search-bar #search-button:hover{
     background-color: grey;
     cursor: pointer;
 }
