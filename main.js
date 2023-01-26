@@ -79,7 +79,8 @@ searchButton.addEventListener('click',async()=>{
     // creating a default data in the modal content with only the heading as long as the users input is null. 
     // every second the function checks if the input is null and will show or not show the default value by the result
     // creating the iframe element to show the desired map with a first value of a picked place
-const defaultDataInModal=()=>{
+    // the function is not an arrow function so i can access it from the onload function written on top
+function defaultDataInModal(){
     myMap.innerHTML=`<iframe id="my-map" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d845.2975747326326!2d34.772481570816176!3d32.06410133535028!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1siw!2sil!4v1674721938136!5m2!1siw!2sil" title="my maps"></iframe>`
     document.body.appendChild(myMap);
     myMap.className='map-container';
