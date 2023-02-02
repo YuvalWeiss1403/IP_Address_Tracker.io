@@ -116,6 +116,8 @@ body{
 .attribution { 
     font-size: 11px;
     text-align: center;
+    position: absolute;
+    bottom: 0;
 }
 
 .attribution a {
@@ -123,6 +125,9 @@ body{
 }
 
 @media only screen and (max-width:690px) {
+    body{
+        overflow-x: hidden;
+    }
     .search-bar{
         width: 260px;
     }
